@@ -1,0 +1,64 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.header {
+  display: flex;
+  flex-direction: column;
+  background-color: #004099;
+
+  @include tablet {
+    height: 3rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #004099;
+  }
+
+  &__link {
+    display: flex;
+    justify-content: center;
+    // background-color: #004099;
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: white;
+    // margin-top: 0.5rem;
+    // margin-bottom: 0.5rem;
+    @include tablet {
+      // align-items: center;
+      font-size: 1.6rem;
+      padding-right: 1rem;
+    }
+  }
+
+  &__logo {
+    height: auto; // 高さを自動にしてアスペクト比を保つ
+    width: auto; // 幅も自動に設定
+    max-width: 50%; // 元の幅に戻す
+    margin: 0 auto;
+    padding-top: 0.5rem;
+
+    @include tablet {
+      max-width: 100%; // タブレットでは最大幅を100%にする
+      height: auto; // アスペクト比を保つため高さを自動に
+      margin-left: 1rem;
+      padding: 0;
+    }
+  }
+  &__heading {
+    display: flex;
+    justify-content: center;
+    background-color: #004099;
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: white;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    @include tablet {
+      align-items: center;
+      font-size: 1.6rem;
+      padding-right: 1rem;
+    }
+  }
+}

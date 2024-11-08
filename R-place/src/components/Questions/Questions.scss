@@ -1,0 +1,121 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.question {
+  padding-bottom: 1rem;
+  @include tablet {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 3rem;
+    height: 100%;
+  }
+  &__container {
+    margin: 1rem;
+    border: solid 1px #004099;
+    background-color: white;
+  }
+
+  &__genre {
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 1rem;
+
+    @include tablet {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 1rem;
+    text-align: center;
+    @include tablet {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__answer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      margin: 1rem;
+    }
+  }
+
+  &__score-box {
+    // display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+
+    // margin: 1rem;
+  }
+
+  &__list {
+    display: flex;
+    // width: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: left;
+    // margin: 1rem;
+    padding: 0;
+
+    &-item {
+      // width: 8%;
+      // height: 8%;
+      list-style: none;
+      padding: 16px 16px;
+      border: solid 1px #004099;
+      font-size: 0.8rem;
+      text-align: left;
+      font-weight: bold;
+      color: black;
+      margin: 5px;
+      @include tablet {
+        font-size: 1.2rem;
+      }
+
+      &:hover {
+        background-color: #004099;
+        color: white;
+        cursor: pointer;
+      }
+
+      &--selected {
+        background-color: #004099;
+        color: white;
+      }
+    }
+  }
+
+  &__btn-box {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    width: 50%;
+  }
+
+  &__btn {
+    width: 30%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #004099;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e4ded6;
+      color: black;
+    }
+  }
+}
