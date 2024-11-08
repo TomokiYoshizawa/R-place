@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./ResultPage.scss";
+import "./resultPage.scss";
 import emailjs from "emailjs-com";
 
 function ResultPage() {
