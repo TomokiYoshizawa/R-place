@@ -178,9 +178,20 @@
       border-radius: 5px;
       margin-bottom: 1rem;
 
+      & + .error {
+        margin-bottom: 0;
+      }
+
       &__comment {
         height: 10rem;
+        overflow: hidden;
+        white-space: normal;
       }
+    }
+    &--error {
+      color: red;
+      font-size: 0.875em;
+      // margin-top: 0.25em;
     }
   }
 

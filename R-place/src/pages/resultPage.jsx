@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./resultPage.scss";
 import emailjs from "emailjs-com";
 
 function ResultPage() {
   const location = useLocation();
   const { totalScore, setScores, selectedItems } = location.state || {};
-  console.log("setScores", setScores);
 
-  // const [formIsOpen, setformIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     companyName: "",
     name: "",
     email: "",
+    comment: "",
   });
+
+  const [formErrors, setFormErrors] = useState({});
 
   // 各質問セットのスコアをまとめて取得
   let allScores = {};
@@ -27,38 +28,67 @@ function ResultPage() {
     });
   });
 
-  const handleSendEmail = () => {
+  // フォーム送信処理とバリデーション
+  const handleSendEmail = (e) => {
+    e.preventDefault();
+
+    // バリデーションチェック
+    if (!validateForm()) {
+      return; // バリデーションに失敗した場合は送信を中断
+    }
+
     const templateParams = {
-      to_email: formData.email, // 入力された送信先のメールアドレス
-      totalScore: totalScore, // メールテンプレートで使用する点数を追加
+      to_email: formData.email,
+      totalScore: totalScore,
       companyName: formData.companyName,
       name: formData.name,
-      ...allScores, // 全ての質問のスコアをテンプレートに追加
+      comment: formData.comment,
+      ...allScores,
     };
 
-    emailjs.send(
-      "service_yn7c5qz", // Service ID
-      "template_8tzcvm6", // Email Template ID
-      templateParams,
-      "cRd4jUP7T_Lm6aTnu" // Public ID
-    );
-    // .then(
-    //   (response) => {
-    //     console.log("メールが送信されました", response.status, response.text);
-    //     setformIsOpen(false); // モーダルを閉じる
-    //   },
-    //   (error) => {
-    //     console.error("メールの送信に失敗しました", error);
-    //   }
-    // );
+    emailjs
+      .send(
+        "service_yn7c5qz", // Service ID
+        "template_8tzcvm6", // Email Template ID
+        templateParams,
+        "cRd4jUP7T_Lm6aTnu" // Public ID
+      )
+      .then((response) => {
+        console.log("メールが送信されました", response.status, response.text);
+        alert("メールが送信されました！");
+        // メール送信後にリンク先にリダイレクト
+        window.location.href = "https://timerex.net/s/h2c0402_a46e/43384cd4/";
+      })
+      .catch((error) => {
+        console.error("メールの送信に失敗しました", error);
+        alert("メールの送信に失敗しました。");
+      });
   };
 
+  // フォーム入力変更時の処理
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "", // 入力があった場合、エラーメッセージをクリア
+    }));
+  };
+
+  // バリデーション処理
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.companyName) errors.companyName = "会社名を入力してください";
+    if (!formData.name) errors.name = "氏名を入力してください";
+    if (!formData.email) errors.email = "メールアドレスを入力してください";
+    if (!formData.comment) errors.comment = "コメントを入力してください";
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0; // エラーがなければ true を返す
   };
 
   const getFeedbackMessage = (score) => {
@@ -98,8 +128,7 @@ function ResultPage() {
 
         <div className="result__total-score--box">
           <h3 className="result__total-score">
-            御社の採用力は:{" "}
-            <span className="result__score"> {totalScore} </span>
+            御社の採用力は: <span className="result__score">{totalScore}</span>
             点です。
           </h3>
         </div>
@@ -127,10 +156,7 @@ function ResultPage() {
               20点
             </p>
           </div>
-          <div
-            className="result__score--box result__score--box__blue
-      "
-          >
+          <div className="result__score--box result__score--box__blue">
             <p className="result__txt">フォローアップ力</p>
             <p>
               <span className="result__score__blue">{setScores[3]}</span> / 20点
@@ -149,16 +175,13 @@ function ResultPage() {
           src={getFeedbackImage(totalScore)}
           alt="フィードバック画像"
         />
-        {/* <button onClick={() => setformIsOpen(true)} className="result__btn">
-        より詳細な採用手法を希望の方はこちらをクリック
-      </button> */}
+
         <div className="result__form">
           <div className="result__form__container">
             <h2 className="result__form__title">
-              {" "}
               最適な採用手法を知りたい方はこちら
             </h2>
-            <form className="result__form__form">
+            <form className="result__form__form" onSubmit={handleSendEmail}>
               <label className="result__form--label">
                 <input
                   className="result__form--input"
@@ -168,6 +191,11 @@ function ResultPage() {
                   onChange={handleChange}
                   placeholder="会社名"
                 />
+                {formErrors.companyName && (
+                  <p className="result__form--error">
+                    {formErrors.companyName}
+                  </p>
+                )}
               </label>
               <label className="result__form--label">
                 <input
@@ -178,6 +206,9 @@ function ResultPage() {
                   onChange={handleChange}
                   placeholder="氏名"
                 />
+                {formErrors.name && (
+                  <p className="result__form--error">{formErrors.name}</p>
+                )}
               </label>
               <label className="result__form--label">
                 <input
@@ -188,40 +219,27 @@ function ResultPage() {
                   onChange={handleChange}
                   placeholder="Email"
                 />
+                {formErrors.email && (
+                  <p className="result__form--error">{formErrors.email}</p>
+                )}
               </label>
-              <label className="result__form--label ">
-                <input
+              <label className="result__form--label">
+                <textarea
                   className="result__form--input result__form--input__comment"
-                  type="comment"
                   name="comment"
-                  value={formData.email}
+                  value={formData.comment}
                   onChange={handleChange}
-                  placeholder="現在の採用手法(例：求人広告、人材紹介、自社HPなど)"
+                  placeholder="現在の採用手法 (例：求人広告、人材紹介、自社HPなど)"
+                  rows="2"
                 />
+                {formErrors.comment && (
+                  <p className="result__form--error">{formErrors.comment}</p>
+                )}
               </label>
-            </form>{" "}
-            <div className="result__msg-box">
-              <p>市野の方から、メールにてご連絡差し上げます。</p>
-            </div>
-            <div className="result__btn__container">
-              {/* <button
-              onClick={() => setformIsOpen(false)}
-              className="result__form--btn"
-            >
-              キャンセル
-            </button> */}
-              <Link
-                to="https://timerex.net/s/h2c0402_a46e/43384cd4/"
-                className="result__btn-link"
-              >
-                <button
-                  onClick={handleSendEmail}
-                  className="result__btn result__btn__left"
-                >
-                  オンラインで相談する
-                </button>
-              </Link>
-            </div>
+              <button type="submit" className="result__btn result__btn__left">
+                オンラインで相談する
+              </button>
+            </form>
           </div>
         </div>
       </div>

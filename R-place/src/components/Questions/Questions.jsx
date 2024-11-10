@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom"; // ページ遷移用に追加
 import "./Questions.scss";
 import questionList from "../../_data/questionsList.json"; // JSONファイルの読み込み
@@ -9,6 +9,7 @@ function Questions() {
   const [totalScore, setTotalScore] = useState(0); // 全体の合計点を保存
   const [setScores, setSetScores] = useState({}); // 各質問セットごとのスコアを保存
   const navigate = useNavigate(); // ページ遷移用のフック
+  const questionRefs = useRef([]);
 
   // 質問集のリスト
   const questionSets = [
@@ -24,7 +25,7 @@ function Questions() {
   const currentSelectedItems = selectedItems[currentIndex] || {};
 
   // スコアを更新し、選択状態を保存する
-  const handleScore = (questionId, value) => {
+  const handleScore = (questionId, value, index) => {
     const numericValue = parseInt(value);
 
     // すでに同じスコアが選ばれている場合はそのスコアを削除
@@ -62,12 +63,18 @@ function Questions() {
         },
       }));
     }
+
+    // 次の質問にスクロール
+    if (index + 1 < currentData.length) {
+      questionRefs.current[index + 1]?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
-  // 次の質問集に移動
+  // 次の質問集に移動し、ページトップにスクロール
   const handleNext = () => {
     if (currentIndex < questionSets.length - 1) {
       setCurrentIndex(currentIndex + 1);
+      window.scrollTo({ top: 0, behavior: "smooth" }); // ページトップにスムーズスクロール
     } else {
       // 全ての質問集が終わったら結果ページに遷移し、各質問のスコアを渡す
       navigate("/result", { state: { totalScore, setScores, selectedItems } });
@@ -78,14 +85,19 @@ function Questions() {
   const handleBefore = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
+      window.scrollTo({ top: 0, behavior: "smooth" }); // ページトップにスムーズスクロール
     }
   };
 
   return (
     <div className="question">
       {currentData.length > 0 ? (
-        currentData.map((item) => (
-          <div key={item.id} className="question__container">
+        currentData.map((item, index) => (
+          <div
+            key={item.id}
+            className="question__container"
+            ref={(el) => (questionRefs.current[index] = el)}
+          >
             <p className="question__genre">{item.questionGenre}</p>
             <p className="question__title">{item.question}</p>
             <div className="question__answer">
@@ -98,7 +110,7 @@ function Questions() {
                         currentSelectedItems[item.id] === value &&
                         "question__list-item--selected"
                       }`}
-                      onClick={() => handleScore(item.id, value)}
+                      onClick={() => handleScore(item.id, value, index)}
                     >
                       {value}.&nbsp; {item.scoreDescriptions[value - 1]}
                     </li>
