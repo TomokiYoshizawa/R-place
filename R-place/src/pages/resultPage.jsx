@@ -124,47 +124,46 @@ function ResultPage() {
   return (
     <div className="result">
       <div className="result__container">
-        <h2 className="result__heading">結果ページ</h2>
-
         <div className="result__total-score--box">
           <h3 className="result__total-score">
             御社の採用力は: <span className="result__score">{totalScore}</span>
             点です。
-          </h3>
+          </h3>{" "}
+          <div className="result__msg--box">
+            <h3 className="result__msg">{getFeedbackMessage(totalScore)}</h3>
+          </div>
         </div>
-        <div className="result__msg--box">
-          <h3 className="result__msg">{getFeedbackMessage(totalScore)}</h3>
-        </div>
+
         <div className="result__score-container">
           <div className="result__score--box result__score--box__red">
-            <p className="result__txt">求人情報力</p>
-            <p>
+            <p className="result__score--txt">求人情報力</p>
+            <p className="result__score--txt">
               <span className="result__score__red">{setScores[0]}</span> / 20点
             </p>
           </div>
           <div className="result__score--box result__score--box__green">
-            <p className="result__txt">応募者対応力</p>
-            <p>
+            <p className="result__score--txt">応募者対応力</p>
+            <p className="result__score--txt">
               <span className="result__score__green">{setScores[1]}</span> /
               20点
             </p>
           </div>
           <div className="result__score--box result__score--box__orange">
-            <p className="result__txt">面接プロセス力</p>
-            <p>
+            <p className="result__score--txt">面接プロセス力</p>
+            <p className="result__score--txt">
               <span className="result__score__orange">{setScores[2]}</span> /
               20点
             </p>
           </div>
           <div className="result__score--box result__score--box__blue">
-            <p className="result__txt">フォローアップ力</p>
-            <p>
+            <p className="result__score--txt">フォローアップ力</p>
+            <p className="result__score--txt">
               <span className="result__score__blue">{setScores[3]}</span> / 20点
             </p>
           </div>
           <div className="result__score--box result__score--box__purple">
-            <p className="result__txt">定着政策力</p>
-            <p>
+            <p className="result__score--txt">定着政策力</p>
+            <p className="result__score--txt">
               <span className="result__score__purple">{setScores[4]}</span> /
               20点
             </p>
@@ -178,10 +177,12 @@ function ResultPage() {
 
         <div className="result__form">
           <div className="result__form__container">
-            <h2 className="result__form__title">
-              最適な採用手法を知りたい方はこちら
-            </h2>
-            <form className="result__form__form" onSubmit={handleSendEmail}>
+            <div className="result__form__title-box">
+              <h2 className="result__form__title">
+                最適な採用手法を知りたい方はこちら
+              </h2>
+            </div>
+            <form className="result__form__box" onSubmit={handleSendEmail}>
               <label className="result__form--label">
                 <input
                   className="result__form--input"
@@ -236,9 +237,11 @@ function ResultPage() {
                   <p className="result__form--error">{formErrors.comment}</p>
                 )}
               </label>
-              <button type="submit" className="result__btn result__btn__left">
-                オンラインで相談する
-              </button>
+              <div className="result__btn__box">
+                <button type="submit" className="result__btn result__btn__left">
+                  オンラインで相談する
+                </button>
+              </div>
             </form>
           </div>
         </div>

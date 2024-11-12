@@ -3,7 +3,7 @@
     {
       "id": 1,
       "questionGenre": "求人情報の作成と公開",
-      "question": "Q1. 求人情報には具体的な仕事内容が詳細に記載されていますか？",
+      "question": "求人情報には具体的な仕事内容が詳細に記載されていますか？",
       "lowDescription": "仕事内容が曖昧で理解しづらい。",
       "highDescription": "新入社員の初日や1週間目にフォローアップが全く行われていない。",
       "scoreDescriptions": [
@@ -16,7 +16,7 @@
     },
     {
       "id": 2,
-      "question": "Q2. 求人情報は、求職者が求めるキーワードを盛り込んでいますか？",
+      "question": "求人情報は、求職者が求めるキーワードを盛り込んでいますか？",
       "lowDescription": "重要なキーワードが全く含まれない。",
       "highDescription": "最適なキーワードを効果的に配置。",
       "scoreDescriptions": [
@@ -29,7 +29,7 @@
     },
     {
       "id": 3,
-      "question": "Q3. 求人情報は、競合他社と比較して魅力的に作成されていますか？",
+      "question": "求人情報は、競合他社と比較して魅力的に作成されていますか？",
       "lowDescription": "競合他社に比べて魅力が低い。",
       "highDescription": "競合他社を大きく上回る魅力。",
       "scoreDescriptions": [
@@ -42,7 +42,7 @@
     },
     {
       "id": 4,
-      "question": "Q4. 自社の求人情報は、IndeedやGoogle for Jobsなどの効果的なプラットフォームで公開されていますか？",
+      "question": "自社の求人情報は、IndeedやGoogle for Jobsなどの効果的なプラットフォームで公開されていますか？",
       "lowDescription": "主要な媒体に未掲載で効果が低い。",
       "highDescription": "主要媒体で広く効果的に展開。",
       "scoreDescriptions": [
@@ -58,7 +58,7 @@
     {
       "id": 1,
       "questionGenre": "応募者対応のスピードと質",
-      "question": "Q1. 応募があった際、24時間以内に初回の連絡を行っていますか？",
+      "question": "応募があった際、24時間以内に初回の連絡を行っていますか？",
       "lowDescription": "数日遅れて連絡が行われる。",
       "highDescription": "即時に対応し、非常に迅速である。",
       "scoreDescriptions": [
@@ -71,7 +71,7 @@
     },
     {
       "id": 2,
-      "question": "Q2. 応募者に対して、電話やメール以外にもショートメッセージなど複数の手段で連絡していますか？",
+      "question": "応募者に対して、電話やメール以外にもショートメッセージなど複数の手段で連絡していますか？",
       "lowDescription": "電話・メールのみで対応する。",
       "highDescription": "最適な連絡手段を選び対応する。",
       "scoreDescriptions": [
@@ -84,7 +84,7 @@
     },
     {
       "id": 3,
-      "question": "Q3. 応募者との初回コンタクト時に、面接日程を速やかに提案していますか？",
+      "question": "応募者との初回コンタクト時に、面接日程を速やかに提案していますか？",
       "lowDescription": "面接提案が遅く応募者が離れる。",
       "highDescription": "迅速で柔軟に面接日程を提案。",
       "scoreDescriptions": [
@@ -97,7 +97,7 @@
     },
     {
       "id": 4,
-      "question": "Q4. 応募者に対して、連絡時に会社の魅力を伝える工夫をしていますか？",
+      "question": "応募者に対して、連絡時に会社の魅力を伝える工夫をしていますか？",
       "lowDescription": "会社の魅力を全く伝えていない。",
       "highDescription": "常に的確に会社の魅力を伝える。",
       "scoreDescriptions": [
@@ -113,7 +113,7 @@
     {
       "id": 1,
       "questionGenre": "面接プロセスの整備",
-      "question": "Q1. 面接の案内状やリマインドメッセージを応募者に送付していますか？",
+      "question": "面接の案内状やリマインドメッセージを応募者に送付していますか？",
       "lowDescription": "案内やリマインドを送らない。",
       "highDescription": "丁寧な案内とリマインドを送付。",
       "scoreDescriptions": [
@@ -126,7 +126,7 @@
     },
     {
       "id": 2,
-      "question": "Q2. 面接での質問は、応募者のスキルや価値観を正確に評価できる内容ですか？",
+      "question": "面接での質問は、応募者のスキルや価値観を正確に評価できる内容ですか？",
       "lowDescription": "質問が曖昧で評価が困難。",
       "highDescription": "質問でスキルや価値観を的確評価。",
       "scoreDescriptions": [
@@ -139,7 +139,7 @@
     },
     {
       "id": 3,
-      "question": "Q3. 面接官の対応は、応募者に対して誠実でプロフェッショナルなものでしょうか？",
+      "question": "面接官の対応は、応募者に対して誠実でプロフェッショナルなものでしょうか？",
       "lowDescription": "対応が不誠実でプロらしくない。",
       "highDescription": "誠実かつプロフェッショナルな対応。",
       "scoreDescriptions": [
@@ -152,7 +152,7 @@
     },
     {
       "id": 4,
-      "question": "Q4. 面接場所の環境（会場の案内、雰囲気、清潔さなど）は整っていますか？",
+      "question": "面接場所の環境（会場の案内、雰囲気、清潔さなど）は整っていますか？",
       "lowDescription": "面接場所が整備されていない。",
       "highDescription": "清潔で案内が行き届いた環境。",
       "scoreDescriptions": [
@@ -168,7 +168,7 @@
     {
       "id": 1,
       "questionGenre": "内定から入社までのフォローアップ",
-      "question": "Q1. 内定後、応募者に対して複数回のフォローアップ連絡をしていますか？",
+      "question": "内定後、応募者に対して複数回のフォローアップ連絡をしていますか？",
       "lowDescription": "フォローアップが全く行われない。",
       "highDescription": "安心感ある定期的なフォロー実施。",
       "scoreDescriptions": [
@@ -181,7 +181,7 @@
     },
     {
       "id": 2,
-      "question": "Q2. 内定者向けに会社のビジョンや今後のキャリアパスを具体的に説明していますか？",
+      "question": "内定者向けに会社のビジョンや今後のキャリアパスを具体的に説明していますか？",
       "lowDescription": "ビジョン・キャリア説明がない。",
       "highDescription": "具体的で明確な将来ビジョン提供。",
       "scoreDescriptions": [
@@ -194,7 +194,7 @@
     },
     {
       "id": 3,
-      "question": "Q3. 内定者に対して、入社前に社内の他のメンバーを紹介する機会を設けていますか？",
+      "question": "内定者に対して、入社前に社内の他のメンバーを紹介する機会を設けていますか？",
       "lowDescription": "紹介機会が無いまま入社。",
       "highDescription": "積極的にメンバー紹介を行う。",
       "scoreDescriptions": [
@@ -207,7 +207,7 @@
     },
     {
       "id": 4,
-      "question": "Q4. 内定者の入社に向けた準備（書類、研修案内など）は適切に行われていますか？",
+      "question": "内定者の入社に向けた準備（書類、研修案内など）は適切に行われていますか？",
       "lowDescription": "準備が無く手続きが混乱。",
       "highDescription": "スムーズで入社準備が整っている。",
       "scoreDescriptions": [
@@ -223,7 +223,7 @@
     {
       "id": 1,
       "questionGenre": "入社後の定着政策",
-      "question": "Q1. 新入社員の初日や1週間目に、フォローアップの面談やコミュニケーションを取っていますか？",
+      "question": "新入社員の初日や1週間目に、フォローアップの面談やコミュニケーションを取っていますか？",
       "lowDescription": "フォローアップが全く無い。",
       "highDescription": "丁寧で安心感あるフォローを実施。",
       "scoreDescriptions": [
@@ -236,7 +236,7 @@
     },
     {
       "id": 2,
-      "question": "Q2. 新入社員に対して、入社後の成長機会やキャリアパスについて定期的にフィードバックを行っていますか？",
+      "question": "新入社員に対して、入社後の成長機会やキャリアパスについて定期的にフィードバックを行っていますか？",
       "lowDescription": "成長機会のフィードバックが無い。",
       "highDescription": "定期的で明確なキャリア支援。",
       "scoreDescriptions": [
@@ -249,7 +249,7 @@
     },
     {
       "id": 3,
-      "question": "Q3. 新入社員の意見や不安を聞くためのヒアリングを行っていますか？",
+      "question": "新入社員の意見や不安を聞くためのヒアリングを行っていますか？",
       "lowDescription": "意見や不安を全く聞かない。",
       "highDescription": "積極的に意見・不安をヒアリング。",
       "scoreDescriptions": [
@@ -262,7 +262,7 @@
     },
     {
       "id": 4,
-      "question": "Q4. 新入社員の成果に対して、適切にフィードバックや評価を行っていますか？",
+      "question": "新入社員の成果に対して、適切にフィードバックや評価を行っていますか？",
       "lowDescription": "フィードバックが全く無い。",
       "highDescription": "定期的かつ具体的な成果評価。",
       "scoreDescriptions": [

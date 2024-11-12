@@ -123,7 +123,6 @@ function Questions() {
       ) : (
         <p>データがありません</p> // データが存在しない場合の表示
       )}
-
       <div className="question__btn-box">
         <button
           className="question__btn"
@@ -135,23 +134,6 @@ function Questions() {
         <button className="question__btn" onClick={handleNext}>
           {currentIndex === questionSets.length - 1 ? "Finish" : "Next"}
         </button>
-      </div>
-
-      {/* 合計点を表示 */}
-      <div className="total-score">
-        <h3>合計点: {totalScore}</h3>
-      </div>
-
-      {/* 各質問セットごとのスコアを表示 */}
-      <div className="set-scores">
-        <h3>各質問セットごとのスコア:</h3>
-        <ul>
-          {Object.keys(setScores).map((index) => (
-            <li key={index}>
-              質問セット {parseInt(index) + 1}: {setScores[index]}
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );
