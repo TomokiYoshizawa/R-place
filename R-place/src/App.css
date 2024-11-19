@@ -1,9 +1,16 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "CustomFont";
 }
 
 .app {
-  background-image: url("../src/assets/backgroundCover.png");
+  /* background-image: url("../src/assets/wallpaper.png"); */
   /* opacity: 0.5; */
+  background-color: rgba(43, 153, 151, 0.228);
+}
+@font-face {
+  font-family: "CustomFont";
+  src: url("../src/assets/font/LINESeedJP/Web/WOFF2/LINESeedJP_OTF_Rg.woff2")
+    format("woff2");
 }

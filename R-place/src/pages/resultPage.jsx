@@ -15,6 +15,11 @@ function ResultPage() {
   });
 
   const [formErrors, setFormErrors] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false); // モーダルの状態を管理
+
+  // モーダルの開閉処理
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   // 各質問セットのスコアをまとめて取得
   let allScores = {};
@@ -42,6 +47,7 @@ function ResultPage() {
       totalScore: totalScore,
       companyName: formData.companyName,
       name: formData.name,
+      email: formData.email,
       comment: formData.comment,
       ...allScores,
     };
@@ -55,17 +61,13 @@ function ResultPage() {
       )
       .then((response) => {
         console.log("メールが送信されました", response.status, response.text);
-        alert("メールが送信されました！");
-        // メール送信後にリンク先にリダイレクト
-        window.location.href = "https://timerex.net/s/h2c0402_a46e/43384cd4/";
+        closeModal(); // モーダルを閉じる
       })
       .catch((error) => {
         console.error("メールの送信に失敗しました", error);
-        alert("メールの送信に失敗しました。");
       });
   };
 
-  // フォーム入力変更時の処理
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -78,7 +80,6 @@ function ResultPage() {
     }));
   };
 
-  // バリデーション処理
   const validateForm = () => {
     const errors = {};
 
@@ -93,15 +94,15 @@ function ResultPage() {
 
   const getFeedbackMessage = (score) => {
     if (score >= 70 && score <= 80) {
-      return "採用力が非常に高く、現在の施策を継続すべきです。";
+      return "採用力は非常に高く、優れた採用プロセスが整備されています。求人内容の充実、迅速な応募者対応、入社後のフォローまで、すべての要素が高水準で機能しており、求職者からも高評価を得やすい状況です。この体制を維持しつつ、さらに社内の魅力を発信し続けることで、今後も優秀な人材を引き寄せ、定着させることができます。さらに他社との差別化をする採用戦略で更に採用に課題がなくなります。";
     } else if (score >= 40 && score <= 69) {
-      return "採用力は十分ありますが、一部改善が必要です。";
+      return "採用力は良好な水準にあり、全体的にスムーズな採用プロセスが確立されています。求人情報や面接対応、フォローアップなど、各プロセスがしっかりと機能しているため、優秀な人材を惹きつける基盤が整っています。さらに定着率を上げるために、入社後のフォロー体制や成長機会の提供を強化することで、今後も持続的な改善が可能です。現状の体制を継続しつつ、細部を強化していきましょう。";
     } else if (score >= 20 && score <= 39) {
-      return "採用力は平均的ですが、複数の改善点があります。";
+      return "採用力は平均的なレベルですが、成長の余地が十分にあります。基本的なプロセスは整っていますが、求人内容の更なる工夫や、面接における求職者へのフィードバックの充実が推奨されます。特に、内定から入社までのフォローアップに力を入れることで、内定辞退のリスクを減らし、定着率の向上が期待できます。引き続き改善に取り組むことで、採用力の安定した向上が図れます。";
     } else if (score >= 15 && score <= 19) {
-      return "採用力が低く、採用プロセスの全面的な見直しが必要です。";
+      return "採用力はやや低い水準です。基本的な採用活動は実施していますが、いくつかのポイントでの改善が必要です。特に、求人情報の具体性や、応募者への対応のスピードアップが重要です。また、面接時に会社の魅力を伝える工夫をすることで、求職者に強い印象を与えることができます。少しずつプロセスを見直し、求職者にとって魅力的な対応を強化することで採用力が向上します。";
     } else if (score < 15) {
-      return "採用力が非常に低く、緊急の改善が求められます。";
+      return "採用力に様々な改善できる課題があり、採用プロセス全体の見直しが必要です。求人内容の充実、応募者対応のスピード改善、面接やフォロー体制の強化など、多方面にわたる改善が求められます。まずは、求人情報をより具体的で魅力的にすることや、応募者の迅速な対応ができる体制づくりから取り組むと効果的です。企業の魅力を最大限に引き出し、求職者にしっかりと伝える施策を導入していきましょう。";
     }
     return "";
   };
@@ -124,16 +125,9 @@ function ResultPage() {
   return (
     <div className="result">
       <div className="result__container">
-        <div className="result__total-score--box">
-          <h3 className="result__total-score">
-            御社の採用力は: <span className="result__score">{totalScore}</span>
-            点です。
-          </h3>{" "}
-          <div className="result__msg--box">
-            <h3 className="result__msg">{getFeedbackMessage(totalScore)}</h3>
-          </div>
+        <div className="result__heading--box">
+          <h3 className="result__heading-">ご協力ありがとうごいます！</h3>
         </div>
-
         <div className="result__score-container">
           <div className="result__score--box result__score--box__red">
             <p className="result__score--txt">求人情報力</p>
@@ -169,82 +163,78 @@ function ResultPage() {
             </p>
           </div>
         </div>
-        <img
-          className="result__feedback__image"
-          src={getFeedbackImage(totalScore)}
-          alt="フィードバック画像"
-        />
-
-        <div className="result__form">
-          <div className="result__form__container">
-            <div className="result__form__title-box">
-              <h2 className="result__form__title">
-                最適な採用手法を知りたい方はこちら
-              </h2>
-            </div>
-            <form className="result__form__box" onSubmit={handleSendEmail}>
-              <label className="result__form--label">
-                <input
-                  className="result__form--input"
-                  type="text"
-                  name="companyName"
-                  value={formData.companyName}
-                  onChange={handleChange}
-                  placeholder="会社名"
-                />
-                {formErrors.companyName && (
-                  <p className="result__form--error">
-                    {formErrors.companyName}
-                  </p>
-                )}
-              </label>
-              <label className="result__form--label">
-                <input
-                  className="result__form--input"
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="氏名"
-                />
-                {formErrors.name && (
-                  <p className="result__form--error">{formErrors.name}</p>
-                )}
-              </label>
-              <label className="result__form--label">
-                <input
-                  className="result__form--input"
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Email"
-                />
-                {formErrors.email && (
-                  <p className="result__form--error">{formErrors.email}</p>
-                )}
-              </label>
-              <label className="result__form--label">
-                <textarea
-                  className="result__form--input result__form--input__comment"
-                  name="comment"
-                  value={formData.comment}
-                  onChange={handleChange}
-                  placeholder="現在の採用手法 (例：求人広告、人材紹介、自社HPなど)"
-                  rows="2"
-                />
-                {formErrors.comment && (
-                  <p className="result__form--error">{formErrors.comment}</p>
-                )}
-              </label>
-              <div className="result__btn__box">
-                <button type="submit" className="result__btn result__btn__left">
-                  オンラインで相談する
-                </button>
-              </div>
-            </form>
+        <div className="result__total-score--box">
+          <h3 className="result__total-score">
+            御社の採用力は: <span className="result__score">{totalScore}</span>
+            点です。
+          </h3>{" "}
+          <div className="result__msg--box">
+            <h3 className="result__msg">{getFeedbackMessage(totalScore)}</h3>
           </div>
         </div>
+
+        {/* モーダルを開くボタン */}
+        <div className="result__btn-box">
+          <button className="result__btn" onClick={openModal}>
+            採用にお困りの方はこちら <br />
+            上記分析を結果をもとに無料採用コンサルティングを行います。
+          </button>
+        </div>
+
+        {/* モーダル */}
+        {isModalOpen && (
+          <div className="modal">
+            <div className="modal__content">
+              <h2 className="modal__close-text" onClick={closeModal}>
+                閉じる
+              </h2>
+              <form onSubmit={handleSendEmail}>
+                <label>
+                  <input
+                    type="text"
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleChange}
+                    placeholder="会社名"
+                  />
+                  {formErrors.companyName && <p>{formErrors.companyName}</p>}
+                </label>
+                <label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="氏名"
+                  />
+                  {formErrors.name && <p>{formErrors.name}</p>}
+                </label>
+                <label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email"
+                  />
+                  {formErrors.email && <p>{formErrors.email}</p>}
+                </label>
+                <label>
+                  <textarea
+                    name="comment"
+                    value={formData.comment}
+                    onChange={handleChange}
+                    placeholder="何か抱えている課題を教えてください。"
+                  />
+                  {formErrors.comment && <p>{formErrors.comment}</p>}
+                </label>
+                <button type="submit" className="result__btn">
+                  送信する
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
