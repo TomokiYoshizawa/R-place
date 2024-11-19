@@ -72,12 +72,17 @@ function Questions() {
 
   // 次の質問集に移動し、ページトップにスクロール
   const handleNext = () => {
-    if (currentIndex < questionSets.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      window.scrollTo({ top: 0, behavior: "smooth" }); // ページトップにスムーズスクロール
-    } else {
-      // 全ての質問集が終わったら結果ページに遷移し、各質問のスコアを渡す
-      navigate("/result", { state: { totalScore, setScores, selectedItems } });
+    try {
+      if (currentIndex < questionSets.length - 1) {
+        setCurrentIndex(currentIndex + 1);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/result", {
+          state: { totalScore, setScores, selectedItems },
+        });
+      }
+    } catch (error) {
+      console.error("Scroll failed:", error);
     }
   };
 
