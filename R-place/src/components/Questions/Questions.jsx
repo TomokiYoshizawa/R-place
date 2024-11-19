@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom"; // ページ遷移用に追加
 import "./Questions.scss";
 import questionList from "../../_data/questionsList.json"; // JSONファイルの読み込み
+import SmoothScroll from "smooth-scroll";
 
 function Questions() {
   const [currentIndex, setCurrentIndex] = useState(0); // 現在表示している質問集のインデックスを管理
@@ -19,6 +20,8 @@ function Questions() {
     questionList.questions_data_4,
     questionList.questions_data_5,
   ];
+
+  const scroll = new SmoothScroll();
 
   // 現在の質問集を取得
   const currentData = questionSets[currentIndex] || [];
@@ -72,17 +75,11 @@ function Questions() {
 
   // 次の質問集に移動し、ページトップにスクロール
   const handleNext = () => {
-    try {
-      if (currentIndex < questionSets.length - 1) {
-        setCurrentIndex(currentIndex + 1);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        navigate("/result", {
-          state: { totalScore, setScores, selectedItems },
-        });
-      }
-    } catch (error) {
-      console.error("Scroll failed:", error);
+    if (currentIndex < questionSets.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      scroll.animateScroll(0); // ページトップにスムーズスクロール
+    } else {
+      navigate("/result", { state: { totalScore, setScores, selectedItems } });
     }
   };
 
