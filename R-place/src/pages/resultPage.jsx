@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import "./resultPage.scss";
 import emailjs from "emailjs-com";
 
@@ -62,6 +63,7 @@ function ResultPage() {
       .then((response) => {
         console.log("メールが送信されました", response.status, response.text);
         closeModal(); // モーダルを閉じる
+        navigate("https://timerex.net/s/h2c0402_a46e/43384cd4/");
       })
       .catch((error) => {
         console.error("メールの送信に失敗しました", error);
@@ -126,7 +128,11 @@ function ResultPage() {
     <div className="result">
       <div className="result__container">
         <div className="result__heading--box">
-          <h3 className="result__heading-">ご協力ありがとうごいます！</h3>
+          <h3 className="result__heading-">
+            回答お疲れ様でした！
+            <br />
+            下記が採用力診断結果です。
+          </h3>
         </div>
         <div className="result__score-container">
           <div className="result__score--box result__score--box__red">
