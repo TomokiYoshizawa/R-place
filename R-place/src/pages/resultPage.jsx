@@ -55,15 +55,16 @@ function ResultPage() {
 
     emailjs
       .send(
-        "service_yn7c5qz", // Service ID
-        "template_8tzcvm6", // Email Template ID
+        "service_8np62jn", // Service ID
+        "template_ig7y8b7", // Email Template ID
         templateParams,
-        "cRd4jUP7T_Lm6aTnu" // Public ID
+        "F3CimT3Gsq9ciGlz7" // Public ID
       )
       .then((response) => {
         console.log("メールが送信されました", response.status, response.text);
         closeModal(); // モーダルを閉じる
-        navigate("https://timerex.net/s/h2c0402_a46e/43384cd4/");
+        // 成功時に指定のURLに遷移
+        window.location.href = "https://timerex.net/s/h2c0402_a46e/43384cd4/";
       })
       .catch((error) => {
         console.error("メールの送信に失敗しました", error);
@@ -136,33 +137,33 @@ function ResultPage() {
         </div>
         <div className="result__score-container">
           <div className="result__score--box result__score--box__red">
-            <p className="result__score--txt">求人情報力</p>
+            <p className="result__score--txt">求人募集</p>
             <p className="result__score--txt">
               <span className="result__score__red">{setScores[0]}</span> / 20点
             </p>
           </div>
           <div className="result__score--box result__score--box__green">
-            <p className="result__score--txt">応募者対応力</p>
+            <p className="result__score--txt">応募対応</p>
             <p className="result__score--txt">
               <span className="result__score__green">{setScores[1]}</span> /
               20点
             </p>
           </div>
           <div className="result__score--box result__score--box__orange">
-            <p className="result__score--txt">面接プロセス力</p>
+            <p className="result__score--txt">面接対応</p>
             <p className="result__score--txt">
               <span className="result__score__orange">{setScores[2]}</span> /
               20点
             </p>
           </div>
           <div className="result__score--box result__score--box__blue">
-            <p className="result__score--txt">フォローアップ力</p>
+            <p className="result__score--txt">内定フォロー</p>
             <p className="result__score--txt">
               <span className="result__score__blue">{setScores[3]}</span> / 20点
             </p>
           </div>
           <div className="result__score--box result__score--box__purple">
-            <p className="result__score--txt">定着政策力</p>
+            <p className="result__score--txt">入社後定着</p>
             <p className="result__score--txt">
               <span className="result__score__purple">{setScores[4]}</span> /
               20点
