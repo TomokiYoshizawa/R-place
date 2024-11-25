@@ -236,7 +236,7 @@ function ResultPage() {
                   {formErrors.comment && <p>{formErrors.comment}</p>}
                 </label>
                 <button type="submit" className="result__btn">
-                  送信する
+                  無料相談はこちら
                 </button>
               </form>
             </div>
